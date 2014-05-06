@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+mysql --user=user --password=password ceilometer << EOF
+delete from sourceassoc;
+delete from meter;
+EOF
+
+RC=$?
+TIMESTAMP=$(date)
+echo "$TIMESTAMP" 2>&1 >> /var/log/ceilometer_cron.log
+echo "$RC" 2>&1 >> /var/log/ceilometer_cron.log
